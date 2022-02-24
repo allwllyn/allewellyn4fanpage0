@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "760229993240",
+    "project_id": "allewellyn4-fanpage-0",
+    "storage_bucket": "allewellyn4-fanpage-0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760229993240:android:3082bf22545048cf61dc6d",
+        "android_client_info": {
+          "package_name": "com.toastjar.allewellyn4fanpage0"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760229993240-u8kdimso89vj76iu416sd3ao6dc71vms.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5M6A80-9FevJ2jMPo219wDlGv19PahDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760229993240-u8kdimso89vj76iu416sd3ao6dc71vms.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "760229993240-jpfj3n1f3nv19c8k740psp2ulo6mt147.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.toastjar.allewellyn4fanpage0"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
