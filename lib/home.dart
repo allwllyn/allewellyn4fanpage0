@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
                 )
               : null,
       body: StreamBuilder<QuerySnapshot>(
-        stream: posts.snapshots(),
+        stream: posts.orderBy('Time').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Text("Someting went wrong querying users");
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void addPost() async {
-    await _db.collection("posts").add({"message": "Random stuff can go here"});
+    //await _db.collection("posts").add({"message": "Random stuff can go here"});
     _displayTextInputDialog(context);
   }
 
@@ -90,7 +90,9 @@ class _HomePageState extends State<HomePage> {
                 child: Text('POST'),
                 onPressed: () async {
                   postText = valueText;
-                  await _db.collection("posts").add({"message": postText});
+                  await _db
+                      .collection("posts")
+                      .add({"message": postText, "Time": DateTime.now()});
                   setState(() {
                     Navigator.pop(context);
                   });
