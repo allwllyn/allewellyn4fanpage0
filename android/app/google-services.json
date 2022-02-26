@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "760229993240-8nj7eg18ddi9h7g6jbsa1l2kg2hh5uj7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.toastjar.allewellyn4fanpage0",
+            "certificate_hash": "76f6191a79cfbb1f14cea25141af707dd483a882"
+          }
+        },
+        {
           "client_id": "760229993240-u8kdimso89vj76iu416sd3ao6dc71vms.apps.googleusercontent.com",
           "client_type": 3
         }

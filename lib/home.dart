@@ -1,3 +1,7 @@
+import 'package:allewellyn4fanpage0/auth_bloc.dart';
+import 'package:allewellyn4fanpage0/signin.dart';
+import 'package:provider/provider.dart';
+
 import 'database_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,8 +22,28 @@ class _HomePageState extends State<HomePage> {
   late String postText;
 
   @override
+  void initState() {
+    var authBloc = Provider.of<AuthBloc>(context, listen: false);
+    authBloc.currentUser.listen((fbUser) {
+      if (fbUser == null) {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => SignInPage()));
+      }
+    });
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
+    final authBloc = Provider.of<AuthBloc>(context);
     return Scaffold(
+      appBar: AppBar(actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.logout_rounded),
+          onPressed: () {
+            authBloc.logout();
+          },
+        )
+      ]),
       floatingActionButton:
           DatabaseService.userMap[_auth.currentUser!.uid]?.role == "ADMIN"
               ? FloatingActionButton(

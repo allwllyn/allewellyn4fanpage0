@@ -1,8 +1,12 @@
+import 'package:allewellyn4fanpage0/auth_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 import 'register.dart';
 import 'home.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -13,14 +17,27 @@ class _SignIn extends State<SignInPage> {
   // const SignInPage({ Key? key }) : super(key: key);
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
-
+  final GoogleSignIn googleSignIn = GoogleSignIn();
   final _formKey = GlobalKey<FormState>();
   final _email = TextEditingController();
   final _password = TextEditingController();
+
   bool _loading = false;
+  @override
+  void initState() {
+    var authBloc = Provider.of<AuthBloc>(context, listen: false);
+    authBloc.currentUser.listen((fbUser) {
+      if (fbUser != null) {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => const HomePage()));
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final authBloc = Provider.of<AuthBloc>(context);
     return Scaffold(
         body: _loading
             ? LoadingPage()
@@ -86,9 +103,17 @@ class _SignIn extends State<SignInPage> {
                           },
                           child: const Text("Register"),
                         ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: const Text("Log in with Google"),
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            onPrimary: Colors.black,
+                            minimumSize: Size(double.infinity, 50),
+                          ),
+                          icon: FaIcon(FontAwesomeIcons.google),
+                          label: Text('Sign in with Google'),
+                          onPressed: () => authBloc.loginGoogle(),
+
+                          //child: const Text("Log in with Google"),
                         ),
                         TextButton(
                           onPressed: () {},
